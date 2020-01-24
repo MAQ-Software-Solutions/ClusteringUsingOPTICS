@@ -1,0 +1,330 @@
+{
+  "dataRoles": [
+    {
+      "displayName": "X values",
+      "kind": "GroupingOrMeasure",
+      "name": "Value1"
+    },
+    {
+      "displayName": "Y values",
+      "kind": "GroupingOrMeasure",
+      "name": "Value2"
+    },
+    {
+      "displayName": "Tooltip",
+      "kind": "GroupingOrMeasure",
+      "name": "Tooltip"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "conditions": [
+        {
+          "Value1": {
+            "max": 6
+          },
+          "Value2": {
+            "max": 6
+          },
+          "Tooltip": {
+            "max": 1
+          }
+        }
+      ],
+      "scriptResult": {
+        "dataInput": {
+          "table": {
+            "rows": {
+              "select": [
+                {
+                  "for": {
+                    "in": "Value1"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "Value2"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "Tooltip"
+                  }
+                }
+              ],
+              "dataReductionAlgorithm": {
+                "top": {
+                  "count": 10000
+                }
+              }
+            }
+          }
+        },
+        "script": {
+          "scriptProviderDefault": "R",
+          "scriptOutputType": "html",
+          "source": {
+            "objectName": "rcv_script",
+            "propertyName": "source"
+          },
+          "provider": {
+            "objectName": "rcv_script",
+            "propertyName": "provider"
+          }
+        }
+      }
+    }
+  ],
+  "objects": {
+    "rcv_script": {
+      "properties": {
+        "provider": {
+          "type": {
+            "text": true
+          }
+        },
+        "source": {
+          "type": {
+            "scripting": {
+              "source": true
+            }
+          }
+        }
+      }
+    },
+    "clusterSettings": {
+      "displayName": "Clustering settings",
+      "description": "Settings to control clusters",
+      "properties": {
+        "parameterSettings": {
+          "displayName": "Parameter setting",
+          "description": "Set the parameters for the Clustering using OPTICS",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "Auto",
+                "value": "Auto"
+              },
+              {
+                "displayName": "User defined",
+                "value": "Manual"
+              }
+            ]
+          }
+        },
+        "scaling": {
+          "displayName": "Data scaling",
+          "description": "Enable data scaling",
+          "type": {
+            "bool": true
+          }
+        },
+        "epsilon": {
+          "displayName": "Epsilon neighbours",
+          "description": "It is the upper limit of the size of the epsilon neighborhood. Limiting the neighborhood size improves performance and has no or very little impact on the ordering as long as it is not set too low",
+          "placeHolderText": "Auto",
+          "type": {
+            "numeric": true
+          }
+        },
+        "minptsClust": {
+          "displayName": "Min number of points in a cluster",
+          "description": "Number of minimum points in the threshold region. The parameter is used to identify dense neighborhoods and the reachability distance is calculated as the distance to the minPts nearest neighbor",
+          "placeHolderText": "Auto",
+          "type": {
+            "numeric": true
+          }
+        },
+        "steepThres": {
+          "displayName": "Steepness threshold",
+          "description": "Between 0 to 1. Steepness threshold to identify clusters hierarchically using the Xi method",
+          "placeHolderText": "Auto",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "plotSettings": {
+      "displayName": "Plot settings",
+      "description": "Settings plot appereance",
+      "properties": {
+        "title": {
+          "displayName": "Title",
+          "description": "Title",
+          "type": {
+            "text": true
+          }
+        },
+        "plotColor": {
+          "displayName": "Plot background color",
+          "description": "Plot background color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "xaxisSettings": {
+      "displayName": "X-Axis",
+      "description": "Appereance settings for X-Axis",
+      "properties": {
+        "xTitle": {
+          "displayName": "Title",
+          "description": "Title",
+          "placeHolderText": "Auto",
+          "type": {
+            "text": true
+          }
+        },
+        "xZeroline": {
+          "displayName": "Zeroline",
+          "description": "Zeroline",
+          "type": {
+            "bool": true
+          }
+        },
+        "xLabels": {
+          "displayName": "Labels",
+          "description": "Labels",
+          "type": {
+            "bool": true
+          }
+        },
+        "xGrid": {
+          "displayName": "Gridlines",
+          "description": "Gridlines",
+          "type": {
+            "bool": true
+          }
+        },
+        "xGridCol": {
+          "displayName": "Gridlines color",
+          "description": "Color of gridlines",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "xGridWidth": {
+          "displayName": "Gridlines width",
+          "description": "Width of gridlines",
+          "type": {
+            "numeric": true
+          }
+        },
+        "xAxisBaseLine": {
+          "displayName": "Baseline",
+          "description": "Baseline",
+          "type": {
+            "bool": true
+          }
+        },
+        "xAxisBaseLineCol": {
+          "displayName": "Baseline color",
+          "description": "Color of baseline",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "xAxisBaseLineWidth": {
+          "displayName": "Baseline width",
+          "description": "Width of baseline",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    },
+    "yaxisSettings": {
+      "displayName": "Y-Axis",
+      "description": "Appereance settings for Y-Axis",
+      "properties": {
+        "yTitle": {
+          "displayName": "Title",
+          "description": "Title",
+          "placeHolderText": "Auto",
+          "type": {
+            "text": true
+          }
+        },
+        "yZeroline": {
+          "displayName": "Zeroline",
+          "description": "Zeroline",
+          "type": {
+            "bool": true
+          }
+        },
+        "yLabels": {
+          "displayName": "Labels",
+          "description": "Labels",
+          "type": {
+            "bool": true
+          }
+        },
+        "yGrid": {
+          "displayName": "Gridlines",
+          "description": "Gridlines",
+          "type": {
+            "bool": true
+          }
+        },
+        "yGridCol": {
+          "displayName": "Gridlines color",
+          "description": "Color of gridlines",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "yGridWidth": {
+          "displayName": "Gridlines width",
+          "description": "Width of gridlines",
+          "type": {
+            "numeric": true
+          }
+        },
+        "yAxisBaseLine": {
+          "displayName": "Baseline",
+          "description": "Baseline",
+          "type": {
+            "bool": true
+          }
+        },
+        "yAxisBaseLineCol": {
+          "displayName": "Baseline color",
+          "description": "Color of baseline",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "yAxisBaseLineWidth": {
+          "displayName": "Baseline width",
+          "description": "Width of baseline",
+          "type": {
+            "numeric": true
+          }
+        }
+      }
+    }
+  },
+  "suppressDefaultTitle": true
+}
